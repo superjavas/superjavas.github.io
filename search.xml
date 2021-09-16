@@ -74,36 +74,9 @@
       
         <tags>
             
-            <tag> 教程 </tag>
-            
             <tag> Hexo </tag>
             
             <tag> 主题 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>图床初体验</title>
-      <link href="/2021/08/17/%E5%9B%BE%E5%BA%8A%E7%A4%BA%E4%BE%8B/"/>
-      <url>/2021/08/17/%E5%9B%BE%E5%BA%8A%E7%A4%BA%E4%BE%8B/</url>
-      
-        <content type="html"><![CDATA[<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p><img src="https://cdn.jsdelivr.net/gh/superjavas/picturedemo/image/image-20210902175342736.png" alt="image-20210902175342736"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 图床 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 图床 </tag>
             
             <tag> 教程 </tag>
             
@@ -145,11 +118,38 @@
       
         <tags>
             
-            <tag> 教程 </tag>
-            
             <tag> Hexo </tag>
             
             <tag> 主题 </tag>
+            
+            <tag> 教程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图床初体验</title>
+      <link href="/2021/08/17/%E5%9B%BE%E5%BA%8A%E7%A4%BA%E4%BE%8B/"/>
+      <url>/2021/08/17/%E5%9B%BE%E5%BA%8A%E7%A4%BA%E4%BE%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p><img src="https://cdn.jsdelivr.net/gh/superjavas/picturedemo/image/image-20210902175342736.png" alt="image-20210902175342736"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 图床 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 图床 </tag>
             
         </tags>
       
