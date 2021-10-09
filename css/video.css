@@ -1,4 +1,4 @@
 
 #index-video { z-index: -1; position: absolute; top: 0; left: 0; height: 100vh; width: 100%; object-fit: cover;}
-@media only screen and (max-width: 760px) { #index-video { display: none;}}
+@media only screen and (max-width: 760px) { #index-video { display: none;} }
 @media only screen and (min-width: 760px) { .full_page { background-image: none!important;}}
