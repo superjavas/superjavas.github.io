@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>背包问题与动态规划</title>
+      <link href="/2021/10/13/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E4%B8%8E%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+      <url>/2021/10/13/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E4%B8%8E%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</url>
+      
+        <content type="html"><![CDATA[<h1 id="背包问题与动态规划"><a href="#背包问题与动态规划" class="headerlink" title="背包问题与动态规划"></a>背包问题与动态规划</h1><h2 id="1-动态规划"><a href="#1-动态规划" class="headerlink" title="1.动态规划"></a>1.动态规划</h2><h3 id="1-1动态规划的原理"><a href="#1-1动态规划的原理" class="headerlink" title="1.1动态规划的原理"></a>1.1动态规划的原理</h3><p>动态规划将大问题拆分成小问题，通过寻找大问题和小问题的递推关系来，解决一个个小问题，最终达到解决原问题的效果。<strong>动态规划具有记忆性，通过填写表格把所有已经解决的子问题答案记录下来，在新问题里需要用到就可以直接提取，避免了重复使用，从而节省了时间，所以在问题满足最优性原则原理之后，用动态规划解决问题的核心在于填表，表填写完毕，最优解也就找到。</strong></p><p>​    最优原则是动态规划的基础，最优性原理在于“多阶段决策过程的最优决策过程的最优决策序列具有这样的性质：不论初始状态和初始决策如何，对于前面的决策造成的某一状态而言，其后各阶段的决策序列必须构成最优决策”。</p><h3 id="1-2动态规划的总体思路"><a href="#1-2动态规划的总体思路" class="headerlink" title="1.2动态规划的总体思路"></a>1.2动态规划的总体思路</h3><p><strong>根据动态规划的解题步骤：</strong></p><ul><li>问题抽象化</li><li>建立模型</li><li>寻找约束条件</li><li>判断是否满足最优条件</li><li>分析大问题与小问题的递推关系式</li><li>填表</li><li>寻找解的组成</li></ul><h2 id="2-例题之背包问题"><a href="#2-例题之背包问题" class="headerlink" title="2.例题之背包问题"></a>2.例题之背包问题</h2><h3 id="2-1题目描述-question"><a href="#2-1题目描述-question" class="headerlink" title="2.1题目描述 :question:"></a>2.1题目描述 :question:</h3><p>有 NN 件物品和一个容量是 VV 的背包。每件物品只能使用一次。</p><p>第 ii 件物品的体积是 vivi，价值是 wiwi。</p><p>求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。<br>输出最大价值。</p><h4 id="输入格式-information-desk-person"><a href="#输入格式-information-desk-person" class="headerlink" title="输入格式:information_desk_person:"></a>输入格式:information_desk_person:</h4><p>第一行两个整数，N，VN，V，用空格隔开，分别表示物品数量和背包容积。</p><p>接下来有 NN 行，每行两个整数 vi,wivi,wi，用空格隔开，分别表示第 ii 件物品的体积和价值。</p><h4 id="输出格式-haircut"><a href="#输出格式-haircut" class="headerlink" title="输出格式:haircut:"></a>输出格式:haircut:</h4><p>输出一个整数，表示最大价值。</p><h4 id="数据范围-haircut-woman"><a href="#数据范围-haircut-woman" class="headerlink" title="数据范围:haircut_woman:"></a>数据范围:haircut_woman:</h4><p>0&lt;N,V≤10000&lt;N,V≤1000<br>0&lt;vi,wi≤1000</p><h4 id="输入样式-haircut-man"><a href="#输入样式-haircut-man" class="headerlink" title="输入样式:haircut_man:"></a>输入样式:haircut_man:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4 5</span><br><span class="line">1 2</span><br><span class="line">2 4</span><br><span class="line">3 4</span><br><span class="line">4 5</span><br></pre></td></tr></table></figure><h4 id="输出样式-haircut-man"><a href="#输出样式-haircut-man" class="headerlink" title="输出样式:haircut_man:"></a>输出样式:haircut_man:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8</span><br></pre></td></tr></table></figure><h3 id="2-2问题分析"><a href="#2-2问题分析" class="headerlink" title="2.2问题分析"></a>2.2问题分析</h3><p>在解决问题之前，为了描述方便，首先定义一些变量: <strong>v[i]代表第i个物品的价值，w[i]代表第i个物品的体积大小。设置f(i,j): 代表在 j 当前背包的容量下，前 i 个组合下背包的最佳组合对应的价值。</strong> </p><p>根据动态规划解题步骤：</p><ul><li><strong>建立模型即求max(v1X1+v2X2+…+vnXn)；</strong></li><li><strong>寻找约束条件，w1X1+w2X2+…+wnXn&lt;capacity；</strong></li><li><strong>寻找递推关系式，面对当前商品有两种可能性：</strong><ul><li><strong>包的容量比该商品体积小，装不下，此时的价值与前i-1个的价值是一样的</strong></li><li><strong>还有足够的容量可以装该商品，但装了也不一定达到当前最优价值，所以在装与不装之间选择最优的一个</strong></li></ul></li></ul><p>可以得出递推关系式：</p><ul><li><strong>j&lt;w[i]  f(i-1,j)</strong></li><li><strong>j&gt;=w[i] f(i,j)=max{f(i-1,j) , f(i-1,j-w[i])+v[i]}</strong></li></ul><p>这里对这两个关系式进行分析解释：</p><ul><li><p><strong>如果第i个物品容积w[i]大于这个背包所设置的最大容积时，无法加入到背包里那么此时背包中的价值为前i-1个物品组合所创造出的价值。即 f(i-1,j)</strong></p></li><li><p><strong>如果加入的第i个物品容积w[i]小于这个背包所设置的最大容积时，还要判断到底是加到背包里使物品的价值最大还是不加入背包里物品的价值最大。</strong>即判断未加入时背包的价值<strong>f(i-1,j)</strong>,与加入后背包的价值：<strong>f(i-1,j-w[i])+v[i]</strong></p></li><li><p>f(i-1,j-w[i])+v[i]如何理解？<strong>因为是加入i个物品求出其最大的价值，那么已经确定要加入背包中了由小问题推出大问题的方法需要求出前i-1个物品组合的最大价值再加上v[i]即可。第i个物品加入到背包的组合的推理公式为：f(i-1,j-w[i])+v[i]</strong></p></li></ul><h3 id="2-3代码实现"><a href="#2-3代码实现" class="headerlink" title="2.3代码实现"></a>2.3代码实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1010</span>;</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> v[N], w[N];</span><br><span class="line"><span class="keyword">int</span> f[N][N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) cin &gt;&gt; v[i] &gt;&gt; w[i];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= m; j ++ )&#123;</span><br><span class="line">            <span class="keyword">if</span> (j &lt; v[i]) f[i][j] = f[i - <span class="number">1</span>][j];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span> f[i][j] = <span class="built_in">max</span>(f[i - <span class="number">1</span>][j], f[i - <span class="number">1</span>][j - v[i]] + w[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; f[n][m] &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>大功告成:grin::happy:</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据结构 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数据结构 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>spring入门第一课</title>
       <link href="/2021/09/28/spring%E5%85%A5%E9%97%A8%E7%AC%AC%E4%B8%80%E8%AF%BE/"/>
       <url>/2021/09/28/spring%E5%85%A5%E9%97%A8%E7%AC%AC%E4%B8%80%E8%AF%BE/</url>
@@ -20,9 +45,9 @@
       
         <tags>
             
-            <tag> 狂神说 </tag>
-            
             <tag> Spring </tag>
+            
+            <tag> 狂神说 </tag>
             
         </tags>
       
@@ -74,9 +99,9 @@
       
         <tags>
             
-            <tag> JavaWeb </tag>
-            
             <tag> 狂神说 </tag>
+            
+            <tag> JavaWeb </tag>
             
         </tags>
       
